@@ -2,7 +2,9 @@
     <div id="cinema">
       <div class="header">
         <div class="nav">
-          <span class="location">广州</span>
+          <router-link :to="{path:'/location'}" class="location">
+            <div>{{ cityName?cityName:'定位失败' }}</div>
+          </router-link>
           <span class="title">影院</span>
           <span class=" icon-search" @click="$router.push('search_cinema')"></span>
         </div>
@@ -36,6 +38,11 @@
           Indicator.open('Loading...');
           this.loadCinemaList();
         },
+        computed:{
+          cityName:function(){
+            return this.$store.state.address
+          }
+        },
         methods:{
           //加载电影列表
           async loadCinemaList(){
@@ -50,6 +57,8 @@
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
+
+
   #cinema
     width 100%
     height 100%
@@ -67,9 +76,20 @@
         background-color #dd2727
         color white
         position relative
+
         .location
-          width 20%
-          text-indent .49rem
+          text-decoration:none
+          border 0.0125rem solid #f1f1f1
+          border-radius 0.2rem
+          text-align center
+          padding .1rem 0.18rem
+          color #fff
+          background-color rgba(255,255,255,.1)
+          display flex
+          justify-content center
+          align-items center
+          font-size .25rem
+
         .title
           width 60%
           text-align center

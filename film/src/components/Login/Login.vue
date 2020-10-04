@@ -6,8 +6,8 @@
       <div class="login-container">
         <div class="login-header logo">
           <span class="icon icon-film-logo"></span>
-          <p class="title">淘气电影</p>
-          <i class="eng-title">Monkey Movie</i>
+          <p class="title">莆院电影</p>
+          <i class="eng-title">PTU Movie</i>
         </div>
         <div class="login-content">
           <div class="login-type">

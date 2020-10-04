@@ -325,7 +325,7 @@ router.get('/api/getMovieList',function (req,res) {
       res.json({error_code:1,message:'获取电影列表失败'})
     } else{
       result = JSON.parse(JSON.stringify(result));
-      
+      console.log(result)
       if (result.length){
         for(let i = 0; i < result.length; i++) {
           for(let j = i+1; j < result.length; j++) {
@@ -392,7 +392,7 @@ router.post('/api/wishMovie',function (req,res) {
     } else{
       let sqlStr = 'SELECT wish_num from t_movie WHERE movie_id = ? LIMIT 1;';
       conn.query(sqlStr,[movieId],(error,result,field)=>{
-        if (error){
+        if (error) {
           res.json({error_code:1,message:'操作失败'});
         } else{
           result = JSON.parse(JSON.stringify(result));
@@ -619,11 +619,11 @@ router.get('/api/getCurrentCinemaMovieSchedule',function (req,res) {
       result = JSON.parse(JSON.stringify(result));
       if (result){
         let tempMovieArr = [];
-        // result.forEach((value)=>{
-        //   if (new Date()-new Date(value.show_date+','+value.show_time)<=0){
-        //     tempMovieArr.push(value.movie_id);
-        //   }
-        // });
+        result.forEach((value)=>{
+          if (new Date()-new Date(value.show_date+','+value.show_time)<=0){
+            tempMovieArr.push(value.movie_id);
+          }
+        });
         tempMovieArr = Array.from(new Set(tempMovieArr));
         let movieArray = [];
         let movieScheduleArray = [];
@@ -712,11 +712,13 @@ router.get('/api/getCurrentMovieSchedule',function (req,res) {
       result = JSON.parse(JSON.stringify(result));
       if (result){
         let tempDateArr = [];
+        console.log(result)
         result.forEach((value)=>{
           if (new Date()-new Date(value.show_date+','+value.show_time)<=0){
             tempDateArr.push(value.show_date);
           }
         });
+        debugger
         tempDateArr = Array.from(new Set(tempDateArr));
         tempDateArr.sort((a,b)=>{
           return new Date(a)-new Date(b);

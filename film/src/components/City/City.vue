@@ -1,7 +1,7 @@
 <template>
     <div :style="{height:'100%'}">
         <div class="navtitle">
-            <i class="iconfont icon-error lf" @click="backmovie()"></i><span class="center">当前城市 - {{cityName}}</span>
+            <span class="center">当前城市 - {{cityName}}</span>
             <b class="back fa fa-angle-left" @click="backHandler"></b>
         </div>
         <div class="search">
@@ -39,7 +39,7 @@
             <!-- 右侧字母列表 -->
             <div class="city_letter">
                 <ul style="list-style:none">
-                    <li v-for="(item,index) in letter" :key="index" @click="lettercity()">{{item}}</li>
+                    <li v-for="(item,index) in letter" :key="index" @click="lettercity($event)">{{item}}</li>
                 </ul>
             </div>
             <div class="showletter" v-if='showx' :class="{addshow:showx}">{{showletterx}}</div>
@@ -61,7 +61,7 @@ export default {
     name: 'City',
     data() {
         return {
-            cityName: "", //cityName
+          cityName:null,
             letter: [],
             isHot: [],
             citylist: [],
@@ -81,10 +81,10 @@ export default {
     },
     methods: {
        //获取城市列表
-       getCityList(){
+        getCityList(){
             let cityJson = require('../../common/json/city');
             let {cities} = cityJson
-            const citylist = cities;
+            let citylist = cities;
             this.citylistc = cities;
             let cityhead = [],
                 newcityhead = [],
@@ -142,7 +142,8 @@ export default {
             setTimeout(function() {
                 _this.showx = false;
             }, 1600);
-            citym.scrollTo(0, letter.offsetTop - 144)
+            console.log(letter.offsetTop );
+            window.scrollTo(0, letter.offsetTop - 144)
         },
         quxiao() {
             this.qu = true;
@@ -184,15 +185,19 @@ export default {
 
 }
 </script>
-<!-- <style lang="scss" scoped>
-.navtitle {
+<style lang="scss" scoped>
+  .center{
+    font-size: 0.4rem;
+    line-height:0rem;
+  }
+  .navtitle {
     height: 36px;
     text-align: center;
-    line-height: 35px;
+    line-height: 16px;
     position: relative;
-}
+  }
 
-.search {
+  .search {
     width: 100%;
     height: 50px;
     box-sizing: border-box;
@@ -202,190 +207,190 @@ export default {
     justify-content: space-between;
 
     .searchx {
-        width: 100%;
-        height: 100%;
-        /* position: relative; */
-        background: #ffffff;
-        border-radius: .05rem;
-        border-radius: 3px;
-        display: flex;
+      width: 100%;
+      height: 100%;
+      /* position: relative; */
+      background: #ffffff;
+      border-radius: .05rem;
+      border-radius: 3px;
+      display: flex;
 
     }
 
     .quxiao {
 
-        flex: 1;
-        display: flex;
-        font-size: .14rem;
-        justify-content: flex-end;
-        align-items: center;
+      flex: 1;
+      display: flex;
+      font-size: .14rem;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     i {
 
-        display: flex;
-        align-items: center;
-        margin: 0 .05rem 0 .1rem;
+      display: flex;
+      align-items: center;
+      margin: 0 .05rem 0 .1rem;
 
-        color: #797d82;
+      color: #797d82;
     }
 
     input {
-        border: none;
-        outline: none;
-        height: 100%;
-        /* margin-left: .3rem; */
-        width: 80%;
-        font-size: .12rem;
+      border: none;
+      outline: none;
+      height: 100%;
+      /* margin-left: .3rem; */
+      width: 80%;
+      font-size: .12rem;
     }
-}
+  }
 
-.cityall {
+  .cityall {
     width: 100%;
     height: 100%;
 
     .city_letter {
-        width: .15rem;
-        text-align: center;
-        position: fixed;
-        top: .94rem;
-        bottom: 0;
-        right: 18px;
-        font-size: .12rem;
+      width: .15rem;
+      text-align: center;
+      position: fixed;
+      top: .94rem;
+      bottom: 0;
+      right: 18px;
+      font-size: .12rem;
 
-        ul {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+      ul {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
 
     .city_main {
-        height: 100%;
-        overflow-y: scroll;
-        margin-right: .15rem;
+      height: 100%;
+      overflow-y: scroll;
+      margin-right: .15rem;
 
-        div {
-            padding-left: .15rem;
+      >div {
+        padding-left: .15rem;
 
-            p {
-                font-size: .13rem;
-                color: #797d82;
-                margin: 10px 0;
-            }
-
-            li {
-                display: inline-block;
-                width: 25%;
-                margin: 5px 0 0 14px;
-                text-align: center;
-                height: 30px;
-                line-height: 30px;
-                border-radius: 3px;
-                background-color: #f4f4f4;
-                font-size: 0.14rem;
-            }
+        p {
+          font-size: .13rem;
+          color: #797d82;
+          margin: 10px 0;
         }
 
-        .cityli {
-            p {
-                height: 1.3rem;
-                line-height: 1.3rem;
-                color: #797d82;
-                font-size: .13rem;
-                padding-left: .15rem;
-                background-color: #f4f4f4;
-            }
-
-            ul {
-                padding-left: .15rem;
-
-                li {
-                    // display: inline-block;
-                    width: 33.3%;
-                    text-align: center;
-                    height: 2.42rem;
-                    line-height: 2.42rem;
-                    overflow: hidden;
-                    font-size: .14rem;
-                }
-            }
+        li {
+          display: inline-block;
+          width: 25%;
+          margin: 5px 0 0 14px;
+          text-align: center;
+          height: 30px;
+          line-height: 30px;
+          border-radius: 3px;
+          background-color: #f4f4f4;
+          font-size: 0.14rem;
         }
+      }
+
+      .cityli {
+        p {
+          height: 0.6rem;
+          line-height: 0.6rem;
+          color: #797d82;
+          font-size: .13rem;
+          padding-left: .15rem;
+          background-color: #f4f4f4;
+        }
+
+        ul {
+          padding-left: .15rem;
+
+          li {
+            // display: inline-block;
+            width: 33.3%;
+            text-align: center;
+            height: 1rem;
+            line-height: 1rem;
+            overflow: hidden;
+            font-size: .14rem;
+          }
+        }
+      }
     }
 
     .showletter {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 100;
-        width: 50px;
-        text-align: center;
-        height: 50px;
-        line-height: 50px;
-        font-size: .24rem;
-        border-radius: .08rem;
-        color: #ffffff;
-        background: rgba(0, 0, 0, .4);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      width: 50px;
+      text-align: center;
+      height: 50px;
+      line-height: 50px;
+      font-size: .24rem;
+      border-radius: .08rem;
+      color: #ffffff;
+      background: rgba(0, 0, 0, .4);
     }
 
     .addshow {
-        animation: citykey 2s linear;
+      animation: citykey 2s linear;
     }
 
     @keyframes citykey {
-        0% {
-            opacity: 0
-        }
+      0% {
+        opacity: 0
+      }
 
-        40% {
-            opacity: 1
-        }
+      40% {
+        opacity: 1
+      }
 
-        80% {
-            opacity: 1
-        }
+      80% {
+        opacity: 1
+      }
 
-        100% {
-            opacity: 0
-        }
+      100% {
+        opacity: 0
+      }
     }
-}
+  }
 
-.searchcityi {
+  .searchcityi {
     color: #bdc0c5;
-
+    font-size: .6rem;
     .iconfont {
-        margin-top: .8rem;
-        display: block;
-        text-align: center;
-        font-size: 1rem;
+      margin-top: .8rem;
+      display: block;
+      text-align: center;
+      font-size: 1rem;
     }
 
     p {
-        text-align: center;
+      text-align: center;
     }
-}
+  }
 
-.searchcitym {
+  .searchcitym {
     li {
-        height: 2.375rem;
-        line-height: 2.375rem;
-        padding: 0 20px;
-        font-size: .14rem;
-        border-bottom: 1px solid #ededed;
+      height: 1rem;
+      line-height: 1rem;
+      padding: 0 20px;
+      font-size: .14rem;
+      border-bottom: 1px solid #ededed;
     }
-}
+  }
 
-.bbb {
+  .bbb {
     margin-top: 13px
-}
+  }
 
-.back {
+  .back {
     position: absolute;
     top: 5px;
     left: 5px;
     font-size: 26px;
     font-weight: normal
-}
-</style> -->
+  }
+</style>
