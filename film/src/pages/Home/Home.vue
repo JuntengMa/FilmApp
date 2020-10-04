@@ -1,7 +1,11 @@
 <template>
     <div id="home">
         <div :class="['search-header',{'active':headerActive}]">
-          <span class="location">广州</span>
+          <!-- <span class="location">莆田</span> -->
+           <router-link :to="{path:'/location'}" class="loaction">
+             <div class="location">{{ cityName?cityName:'定位失败' }}</div>
+           </router-link>
+
           <span class="search"><span class="icon-search"></span><input type="text" placeholder="找电影、影院" @focus="$router.push('search_all')"></span>
           <span class="date"><span class="calender"><span class="day">{{new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}}</span></span></span>
         </div>
@@ -96,37 +100,45 @@
             autoplay:true,
             loop: true,
             // 如果需要分页器
-            // pagination: {
-            //   el: '.swiper-pagination',
-            //   clickable:true
-            // }
+            pagination: {
+              el: '.swiper-pagination',
+              clickable:true
+            }
           });
           window.addEventListener('scroll', this.handleScroll)
         },
-      methods:{
-        //处理滚动
-        handleScroll(){
-          window.pageYOffset>window.innerWidth*80/360 ? this.headerActive = true : this.headerActive = false
-        },
-        //加载电影列表
-        async loadMovieList(){
-          let json = await getMovieList();
-          json.data.forEach((value,index)=>{
-            if (new Date()-new Date(value.public_date)>=0){
-              this.hotMovieList.push(value);
-            } else{
-              this.notShowMovieList.push(value);
+        computed:{
+           cityName:function(){
+              return this.$store.state.address
             }
-          });
-          this.hotMovieList.sort((a,b)=>{
-            return b.score-a.score;
-          });
-          this.notShowMovieList.sort((a,b)=>{
-            return b.wish_num-a.wish_num;
-          });
-          Indicator.close();
-        }
-      }
+        },
+        methods:{
+          //处理滚动
+          handleScroll(){
+            window.pageYOffset>window.innerWidth*80/360 ? this.headerActive = true : this.headerActive = false
+          },
+
+          //加载电影列表
+          async loadMovieList(){
+            let json = await getMovieList();
+            json.data.forEach((value,index)=>{
+              if (new Date()-new Date(value.public_date)>=0){
+                this.hotMovieList.push(value);
+              } else{
+                this.notShowMovieList.push(value);
+              }
+            });
+            this.hotMovieList.sort((a,b)=>{
+              return b.score-a.score;
+            });
+            this.notShowMovieList.sort((a,b)=>{
+              return b.wish_num-a.wish_num;
+            });
+            Indicator.close();
+          }
+        },
+
+
     }
 </script>
 
@@ -134,6 +146,8 @@
   #home
     width 100%
     height 100%
+    .loaction
+      text-decoration:none
     .search-header
       font-size 0.3125rem
       position fixed

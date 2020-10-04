@@ -10,19 +10,23 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.20.0",
     "element-ui": "^2.7.0",
+    "jquery": "^3.5.1",
     "ly-tab": "^2.1.2",
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
-    "stylus": "^0.54.5",
+    "sass": "^1.26.11",
+    "scss": "^0.2.4",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "swiper": "^4.5.0",
     "url-loader": "^1.1.2",
     "vue": "^2.5.2",
     "vue-cookies": "^1.5.13",
     "vue-router": "^3.0.1",
-    "vuejs-mobile-datepicker": "^1.0.3"
+    "vuejs-mobile-datepicker": "^1.0.3",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

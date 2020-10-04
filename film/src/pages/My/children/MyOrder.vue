@@ -17,6 +17,10 @@
               <div class="movie">{{item.name}}<span class="num">{{item.ticket_num}}张</span></div>
               <div class="date"><span class="day">{{item.show_date.split('-')[1]+'月'+item.show_date.split('-')[2]+'日'}}</span><span class="time">{{item.show_time}}</span></div>
               <div class="cinema"><span class="hall">{{item.hall_name}}</span><span class="seat" v-for="(itemSeat,valueSeat) in JSON.parse(item.order_seat_info)" :key="valueSeat">{{formatSeat(itemSeat)}}</span></div>
+               <div class="order_code">
+                 <span> &nbsp;&nbsp;&nbsp;取票码：</span>
+                 <span class="hall">{{item.phone_code}}</span>
+              </div>
             </div>
           </div>
           <div class="item-bottom">

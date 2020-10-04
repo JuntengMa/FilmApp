@@ -23,6 +23,8 @@ import MyMovie from '../pages/My/children/MyMovie'
 import ModifyUserName from '../pages/My/children/ModifyUserName'
 import ModifyUserSign from '../pages/My/children/ModifyUserSign'
 
+import City from '../components/City/City'
+
 Vue.use(Router);
 
 export default new Router({
@@ -37,6 +39,14 @@ export default new Router({
       component: Home,
       meta:{
         showTabBar:true,
+      }
+    },
+    {
+      path: '/location',
+      name: 'City',
+      component: City,
+      meta: {
+        showTabBar: true,
       }
     },
     {

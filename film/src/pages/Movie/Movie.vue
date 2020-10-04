@@ -1,7 +1,9 @@
 <template>
     <div id="movie">
       <div class="tab-header">
-        <span class="location">广州</span>
+        <router-link :to="{path:'/location'}" class="loaction"  style="text-decoration: none; color: rgba(255,255, 255, 0.6);">
+            <div class="location">{{ cityName?cityName:'定位失败' }}</div>
+         </router-link>
         <span :class="['normal',{'active':isHotMovie}]" @click="optionMovieType(true)">正在热映</span>
         <span :class="['normal',{'active':!isHotMovie}]" @click="optionMovieType(false)">即将上映</span>
         <span class=" icon-search" @click="$router.push('search_movie')"></span>
@@ -34,6 +36,11 @@
           this.isHotMovie = false;
         }
         this.loadMovieList();
+      },
+      computed:{
+           cityName:function(){
+              return this.$store.state.address
+            }
       },
       data(){
           return{
@@ -76,6 +83,7 @@
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
+
   #movie
     width 100%
     height 100%
@@ -91,7 +99,7 @@
       position fixed
       left 0
       top 0
-      .normal
+     .normal
         opacity .6
         position relative
         display flex
@@ -164,4 +172,6 @@
             border-radius .08rem
             font-size .25rem
             color #fff
+
 </style>
+
