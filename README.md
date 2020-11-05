@@ -1,6 +1,4 @@
-# 淘气电影
-
-> ### 一个Vue+Express+Mysql的电影售票项目
+## 一个Vue+Express+Mysql的电影售票项目
 
 ## 效果预览
 
