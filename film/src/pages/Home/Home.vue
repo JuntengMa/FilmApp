@@ -76,6 +76,7 @@
     import {getMovieList} from '../../api/index'
     import {Indicator} from 'mint-ui';
     import Swiper from 'swiper'
+    //https://element.eleme.cn/#/zh-CN/component/cascader
     import 'swiper/dist/css/swiper.min.css'
     export default {
         name: "Home",

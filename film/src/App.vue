@@ -16,6 +16,7 @@ export default {
       this.getXYbyIP();
    },
    methods: {
+      //https://lbsyun.baidu.com/
       getXYbyIP() {
           let _this = this;
           var url = "https://api.map.baidu.com/location/ip?ak=HQi0eHpVOLlRuIFlsTZNGlYvqLO56un3&coor=bd09ll";
