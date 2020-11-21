@@ -20,50 +20,51 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for t_admin
 -- ----------------------------
--- DROP TABLE IF EXISTS `t_admin`;
--- CREATE TABLE `t_admin`  (
---   `admin_id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理员id',
---   `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员姓名',
---   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员密码',
---   `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员性别',
---   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员联系电话',
---   `birthday` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '出生年月日',
---   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员头像',
---   PRIMARY KEY (`admin_id`) USING BTREE
--- ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `t_admin`;
+CREATE TABLE `t_admin`  (
+  `admin_id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理员id',
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员姓名',
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员密码',
+  `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员性别',
+  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员联系电话',
+  `birthday` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '出生年月日',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '管理员头像',
+  PRIMARY KEY (`admin_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
--- -- ----------------------------
--- -- Records of t_admin
--- -- ----------------------------
--- INSERT INTO `t_admin` VALUES (1, 'admin', 'admin', '男', '13414850215', '1999-9-9', '/images/admin/admin.gif');
+-- ----------------------------
+-- Records of t_admin
+-- ----------------------------
+INSERT INTO `t_admin` VALUES (1, 'admin', 'admin', '女', '13414850215', '1999-9-9', '/images/admin/admin.gif');
 
 
--- -- -- ----------------------------
--- -- -- Records of t_cinema
--- -- -- ----------------------------
--- INSERT INTO `t_cinema` VALUES (1, '文正电影城', '13498476301', '福建', '莆田', '莆田学院中区文正楼', '中区文正楼2楼');
--- INSERT INTO `t_cinema` VALUES (2, '雄馨影院', '13745454545', '福建', '莆田', '莆田中区图书馆', '莆田中区图书馆顶层露天影院');
--- INSERT INTO `t_cinema` VALUES (4, '中区金融电影城', '13409989898', '福建', '莆田', '莆田中区图书馆', '番禺区钟屏路钟福广场3层（祈福新村祈福医院旁）');
--- INSERT INTO `t_cinema` VALUES (5, '沙湾3D数字电影院', '13465102832', '福建', '莆田', '番禺区', '番禺区沙湾镇大巷涌路沙湾文化中心2楼（沁芳园对面）');
--- INSERT INTO `t_cinema` VALUES (6, '大地影院(奥体高德美居店)', '13454729283', '福建', '莆田', '城厢区', '天河区奥体南路12号高德美居家居馆3楼（近天河百货）');
--- INSERT INTO `t_cinema` VALUES (7, '金逸国际影城(维家思店)', '13483743433', '福建', '莆田', '城厢区', '天河区黄埔大道西188号维家思广场3楼（富力盈隆广场对面）');
--- INSERT INTO `t_cinema` VALUES (8, 'FUN范影城(喜洋时代东圃店)', '13418226112', '福建', '莆田', '秀屿区', '天河区东圃大马路4号四季时尚荟A栋1楼（近东圃购物中心）');
--- INSERT INTO `t_cinema` VALUES (14, '万达影院', '13498746534', NULL, NULL, NULL, '天河区长湴北街34号3楼');
+-- ----------------------------
+-- Table structure for t_cinema
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cinema`;
+CREATE TABLE `t_cinema`  (
+  `cinema_id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '影院id',
+  `cinema_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院名称',
+  `cinema_phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院电话',
+  `province` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在省份',
+  `city` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在市',
+  `county` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在区县',
+  `specified_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院详细地址',
+  PRIMARY KEY (`cinema_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
--- -- ----------------------------
--- -- Table structure for t_cinema
--- -- ----------------------------
--- DROP TABLE IF EXISTS `t_cinema`;
--- CREATE TABLE `t_cinema`  (
---   `cinema_id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '影院id',
---   `cinema_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院名称',
---   `cinema_phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院电话',
---   `province` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在省份',
---   `city` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在市',
---   `county` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院所在区县',
---   `specified_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '影院详细地址',
---   PRIMARY KEY (`cinema_id`) USING BTREE
--- ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_cinema
+-- ----------------------------
+INSERT INTO `t_cinema` VALUES (1, '文正电影城', '13498476301', '福建', '莆田', '莆田学院中区文正楼', '中区文正楼2楼');
+INSERT INTO `t_cinema` VALUES (2, '雄馨影院', '13745454545', '福建', '莆田', '莆田中区图书馆', '莆田中区图书馆顶层露天影院');
+INSERT INTO `t_cinema` VALUES (4, '中区金融电影城', '13409989898', '福建', '莆田', '莆田中区图书馆', '番禺区钟屏路钟福广场3层（祈福新村祈福医院旁）');
+INSERT INTO `t_cinema` VALUES (5, '沙湾3D数字电影院', '13465102832', '福建', '莆田', '番禺区', '番禺区沙湾镇大巷涌路沙湾文化中心2楼（沁芳园对面）');
+INSERT INTO `t_cinema` VALUES (6, '大地影院(奥体高德美居店)', '13454729283', '福建', '莆田', '城厢区', '天河区奥体南路12号高德美居家居馆3楼（近天河百货）');
+INSERT INTO `t_cinema` VALUES (7, '金逸国际影城(维家思店)', '13483743433', '福建', '莆田', '城厢区', '天河区黄埔大道西188号维家思广场3楼（富力盈隆广场对面）');
+INSERT INTO `t_cinema` VALUES (8, 'FUN范影城(喜洋时代东圃店)', '13418226112', '福建', '莆田', '秀屿区', '天河区东圃大马路4号四季时尚荟A栋1楼（近东圃购物中心）');
+INSERT INTO `t_cinema` VALUES (14, '万达影院', '13498746534', NULL, NULL, NULL, '天河区长湴北街34号3楼');
 
 
 -- -- ----------------------------

@@ -242,8 +242,7 @@ export default {
             this.loadCurrentPageUser(this.currentPage, 8, this.searchInput);
           }
         }
-      });
-      console.log(index, row);
+      }).catch(() => {});
     },
     async currentChange(currentPage) {
       this.currentPage = currentPage;
